@@ -15,5 +15,18 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <!-- -*- extra stuff goes here -*- -->
-  
+   <include package="plone.behavior" file="meta.zcml" />
+
+    <include package="plone.directives.form" file="meta.zcml" />
+    <include package="plone.directives.form" />
+
+    <grok:grok package="." />
+
+    <plone:behavior
+        title="IJournalist"
+        description="Adds biography and e-mail fields to sc.person.Person"
+        provides="IJournalist"
+        factory=".behaviors.Jounalist"
+        />
+
 </configure>

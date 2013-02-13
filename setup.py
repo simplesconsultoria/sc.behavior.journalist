@@ -41,6 +41,12 @@ setup(name='sc.behavior.journalist',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.behavior',
+          'plone.directives.form',
+          'zope.schema',
+          'zope.interface',
+          'zope.component',
+          's17.person',
       ],
       extras_require={'test': ['plone.app.testing']},
       entry_points="""
