@@ -1,5 +1,5 @@
 """Behavior to allow one single e-mail address
-and a shor biography to sc.person.Person
+and a short biography to sc.person.Person
 """
 
 from zope.annotation.interfaces import IAnnotations
@@ -24,7 +24,7 @@ class IJournalist(form.Schema):
             required=False,
         )
 
-    biography = schema.Text(
+    resume = schema.Text(
                 title=_(u"Biography"),
                 description=_(u"Short biography describing the person -"
                 u" suitable to be displayed in a portlet along posts"),
@@ -52,9 +52,9 @@ class Journalist(object):
         self.annotation['s17.person.journalist_email'] = value
 
     @property
-    def biography(self):
-        return self.annotation.get('s17.person.biography', [])
+    def resume(self):
+        return self.annotation.get('s17.person.resume', [])
 
-    @biography.setter
-    def biography(self, value):
-        self.annotation['s17.person.biography'] = value
+    @resume.setter
+    def resume(self, value):
+        self.annotation['s17.person.resume'] = value

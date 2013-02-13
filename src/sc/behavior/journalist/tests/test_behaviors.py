@@ -31,7 +31,7 @@ from  sc.behavior.journalist import INTEGRATION_TESTING
 
 class MockJournalist(object):
     email = ""
-    biography = ""
+    resume = ""
 
 class IContactInfoTest(unittest.TestCase):
 
@@ -89,9 +89,9 @@ class IContactInfoTest(unittest.TestCase):
         data.email = "hahahaha.not-valid"
         self.assertRaises(Invalid, IJournalist.validateInvariants, data)
 
-    def test_biography(self):
+    def test_resume(self):
         self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         adapter = IJournalist(user1)
-        adapter.biography = u"somebody, somewhere"
-        self.assertEquals(adapter.biography, u"somebody, somewhere" )
+        adapter.resume = u"somebody, somewhere"
+        self.assertEquals(adapter.resume, u"somebody, somewhere" )
