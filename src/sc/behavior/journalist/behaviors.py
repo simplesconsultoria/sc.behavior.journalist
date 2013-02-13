@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """Behavior to allow one single e-mail address
 and a short biography to sc.person.Person
 """
@@ -25,7 +27,7 @@ class IJournalist(form.Schema):
         )
 
     resume = schema.Text(
-                title=_(u"Biography"),
+                title=_(u"Résumé"),
                 description=_(u"Short biography describing the person -"
                 u" suitable to be displayed in a portlet along posts"),
                 required=False
