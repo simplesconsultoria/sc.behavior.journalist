@@ -1,25 +1,71 @@
+# -*- coding: utf-8 -*-
 import unittest2 as unittest
 
-from Products.CMFCore.utils import getToolByName
+from zope.site.hooks import setSite
 
-from sc.behavior.journalist.testing import\
-    SC_BEHAVIOR_JOURNALIST_INTEGRATION
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import login
+from plone.app.testing import setRoles
+
+from s17.person.testing import INTEGRATION_TESTING
+
+PROJECTNAME = 'sc.behavior.journalist'
 
 
-class TestExample(unittest.TestCase):
+class BaseTestCase(unittest.TestCase):
+    """base test case to be used by other tests"""
 
-    layer = SC_BEHAVIOR_JOURNALIST_INTEGRATION
-    
+    layer = INTEGRATION_TESTING
+
+    def setUpUser(self):
+        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
+        login(self.portal, TEST_USER_NAME)
+
     def setUp(self):
-        self.app = self.layer['app']
-        self.portal = self.layer['portal']
-        self.qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
-    
-    def test_product_is_installed(self):
-        """ Validate that our products GS profile has been run and the product 
-            installed
-        """
-        pid = 'sc.behavior.journalist'
-        installed = [p['id'] for p in self.qi_tool.listInstalledProducts()]
-        self.assertTrue(pid in installed,
-                        'package appears not to have been installed')
+        portal = self.layer['portal']
+        setSite(portal)
+        self.portal = portal
+        self.qi = getattr(self.portal, 'portal_quickinstaller')
+        self.pp = getattr(self.portal, 'portal_properties')
+        self.wt = getattr(self.portal, 'portal_workflow')
+        self.st = getattr(self.portal, 'portal_setup')
+        self.setUpUser()
+
+
+class TestInstall(BaseTestCase):
+    """ensure product is properly installed"""
+
+    def test_installed(self):
+        self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
+                        '%s not installed' % PROJECTNAME)
+
+    def test_installed_datagridfield(self):
+        dependency = 'collective.z3cform.datagridfield'
+        self.assertTrue(self.qi.isProductInstalled(dependency),
+                        '%s not installed' % dependency)
+
+    def test_catalog_installed(self):
+        self.assertTrue('portal_personcatalog' in self.portal.objectIds(),
+                        'Catalog not installed')
+
+    def test_css_registry(self):
+        portal_css = self.portal.portal_css
+        resources = portal_css.getResourceIds()
+        self.assertTrue('++resource++s17.person.stylesheets/s17.person.css' in resources)
+
+
+class TestUninstall(BaseTestCase):
+    """ensure product is properly uninstalled"""
+
+    def setUp(self):
+        BaseTestCase.setUp(self)
+        self.qi.uninstallProducts(products=[PROJECTNAME])
+
+    def test_uninstalled(self):
+        self.assertFalse(self.qi.isProductInstalled(PROJECTNAME))
+
+    def test_css_registry(self):
+        portal_css = self.portal.portal_css
+        resources = portal_css.getResourceIds()
+        self.assertFalse('++resource++s17.person.stylesheets/s17.person.css' in resources)
