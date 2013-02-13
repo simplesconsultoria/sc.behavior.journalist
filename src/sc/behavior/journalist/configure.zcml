@@ -3,9 +3,11 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:grok="http://namespaces.zope.org/grok"
     i18n_domain="sc.behavior.journalist">
 
-  <five:registerPackage package="." initialize=".initialize" />
+  <!-- five:registerPackage package="." initialize=".initialize" / -->
 
   <genericsetup:registerProfile
       name="default"
@@ -24,9 +26,9 @@
 
     <plone:behavior
         title="IJournalist"
-        description="Adds biography and e-mail fields to sc.person.Person"
-        provides="IJournalist"
-        factory=".behaviors.Jounalist"
+        description="Adds biography and e-mail fields to s17.person.Person"
+        provides=".behaviors.IJournalist"
+        factory=".behaviors.Journalist"
         />
 
 </configure>

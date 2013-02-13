@@ -10,7 +10,7 @@ from zope.component import adapts
 from plone.directives import form
 from zope import schema
 
-from s17.person.person import IPerson
+from s17.person.content.person import IPerson
 
 from sc.behavior.journalist import MessageFactory as _
 
@@ -55,6 +55,6 @@ class Journalist(object):
     def biography(self):
         return self.annotation.get('s17.person.biography', [])
 
-    @email.setter
+    @biography.setter
     def biography(self, value):
         self.annotation['s17.person.biography'] = value
