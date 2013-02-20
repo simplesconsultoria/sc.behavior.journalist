@@ -1,57 +1,60 @@
+# -*- coding: utf-8 -*-
+
 from setuptools import setup, find_packages
+
 import os
 
-version = '0.9'
-
-long_description = (
-    open('README.txt').read()
-    + '\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.txt').read()
-    + '\n' +
-    open('CHANGES.txt').read()
-    + '\n')
+version = '1.0'
+description = "Adds Journalist especific information to the Person content \
+type defined in s17.person.",
+long_description = open("README.txt").read() + "\n" + \
+                   open(os.path.join("docs", "INSTALL.txt")).read() + "\n" + \
+                   open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
+                   open(os.path.join("docs", "HISTORY.txt")).read()
 
 setup(name='sc.behavior.journalist',
       version=version,
-      description="Behavior for journalist fields on s17.Person",
+      description=description,
       long_description=long_description,
-      # Get more strings from
-      # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
+        "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
         "Framework :: Plone",
+        "Framework :: Plone :: 4.2",
+#        "Framework :: Plone :: 4.3",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
+        "Programming Language :: JavaScript",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
+        "Topic :: Office/Business :: News/Diary",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
-      license='gpl',
+      keywords='plone dexterity behaviors journalism news',
+      author='João S. O. Bueno',
+      author_email='jsbueno@simplesconsultoria.com.br',
+      url='https://github.com/simplesconsultoria/sc.behavior.journalist',
+      license='GPLv2',
       packages=find_packages('src'),
       package_dir={'': 'src'},
       namespace_packages=['sc', 'sc.behavior'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
           'plone.behavior',
           'plone.directives.form',
-          'zope.schema',
-          'zope.interface',
-          'zope.component',
           's17.person',
+          'setuptools',
+          'zope.component',
+          'zope.interface',
+          'zope.schema',
       ],
       extras_require={'test': ['plone.app.testing']},
       entry_points="""
-      # -*- Entry points: -*-
-  	  [z3c.autoinclude.plugin]
-  	  target = plone
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )
