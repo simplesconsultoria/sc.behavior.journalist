@@ -12,16 +12,18 @@ from plone.behavior.interfaces import IBehavior
 
 from plone.dexterity.interfaces import IDexterityFTI
 
-from  sc.behavior.journalist import INTEGRATION_TESTING
+from sc.behavior.journalist.behaviors import IJournalist
+from sc.behavior.journalist.testing import INTEGRATION_TESTING
 
 
 class MockJournalist(object):
     email = ""
     resume = ""
 
+
 class IContactInfoTest(unittest.TestCase):
 
-    name = 'sc.behavior.IJournalist'
+    name = 'sc.behavior.journalist.behaviors.IJournalist'
 
     layer = INTEGRATION_TESTING
 
@@ -34,36 +36,35 @@ class IContactInfoTest(unittest.TestCase):
         self.folder = self.portal['test-folder']
         behaviors = []
         behaviors.append(self.name)
-        fti = queryUtility(IDexterityFTI,
-                           name='Person')
+        fti = queryUtility(IDexterityFTI, name='Person')
         fti.behaviors = tuple(behaviors)
 
     def test_registration(self):
         registration = queryUtility(IBehavior, name=self.name)
-        self.assertNotEquals(None, registration)
+        self.assertIsNotNone(registration)
 
-    def test_set_in_person(self):
-        fti = queryUtility(IDexterityFTI,
-                           name='Person')
+    def test_behavior_in_person(self):
+        # XXX: I don't think this is useful
+        fti = queryUtility(IDexterityFTI, name='Person')
         behaviors = fti.behaviors
-        self.assertTrue(self.name in behaviors)
+        self.assertIn(self.name, behaviors)
 
     def test_adapt_content(self):
         self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
-        adapter = IJournalist(p1)
-        self.assertNotEquals(None, adapter)
+        journalist = IJournalist(p1)
+        self.assertIsNotNone(journalist)
 
     def test_email(self):
         self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
-        adapter = IJournalist(user1)
-        adapter.email = "email@example.com"
-        self.assertEquals(adapter.email, "email@example.com")
+        journalist = IJournalist(user1)
+        journalist.email = "email@example.com"
+        self.assertEqual(journalist.email, "email@example.com")
 
     def test_resume(self):
         self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
-        adapter = IJournalist(user1)
-        adapter.resume = u"somebody, somewhere"
-        self.assertEquals(adapter.resume, u"somebody, somewhere" )
+        journalist = IJournalist(user1)
+        journalist.resume = u"somebody, somewhere"
+        self.assertEqual(journalist.resume, u"somebody, somewhere")
