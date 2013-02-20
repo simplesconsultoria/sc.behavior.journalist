@@ -8,7 +8,7 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
 
-from s17.person.testing import INTEGRATION_TESTING
+from sc.behavior.journalist.testing import INTEGRATION_TESTING
 
 PROJECTNAME = 'sc.behavior.journalist'
 
@@ -40,8 +40,8 @@ class TestInstall(BaseTestCase):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
                         '%s not installed' % PROJECTNAME)
 
-    def test_installed_datagridfield(self):
-        dependency = 'collective.z3cform.datagridfield'
+    def test_dependencies_installed(self):
+        dependency = 's17.person'
         self.assertTrue(self.qi.isProductInstalled(dependency),
                         '%s not installed' % dependency)
 

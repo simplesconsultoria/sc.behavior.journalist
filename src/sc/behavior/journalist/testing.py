@@ -13,6 +13,8 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
+        import s17.person
+        self.loadZCML(package=s17.person)
         import sc.behavior.journalist
         self.loadZCML(package=sc.behavior.journalist)
 
