@@ -1,19 +1,14 @@
 # -*- coding: utf-8 -*-
 
-
-import unittest2 as unittest
-
-from zope.component import queryUtility
-
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-
+from plone.app.testing import TEST_USER_ID
 from plone.behavior.interfaces import IBehavior
-
 from plone.dexterity.interfaces import IDexterityFTI
-
 from sc.behavior.journalist.behaviors import IJournalist
 from sc.behavior.journalist.testing import INTEGRATION_TESTING
+from zope.component import queryUtility
+
+import unittest2 as unittest
 
 
 class MockJournalist(object):

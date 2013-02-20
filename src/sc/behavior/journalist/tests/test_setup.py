@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import unittest2 as unittest
 
-from zope.site.hooks import setSite
-
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
-
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from sc.behavior.journalist.testing import INTEGRATION_TESTING
+from zope.site.hooks import setSite
+
+import unittest2 as unittest
 
 PROJECTNAME = 'sc.behavior.journalist'
 

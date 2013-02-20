@@ -1,33 +1,29 @@
 # coding: utf-8
 
-from Products.CMFDefault.utils import checkEmailAddress
-from zope.annotation.interfaces import IAnnotations
-
-from zope.interface import implements, alsoProvides
-from zope.component import adapts
-
 from plone.directives import form
-from zope import schema
-
+from Products.CMFDefault.utils import checkEmailAddress
 from s17.person.content.person import IPerson
-
 from sc.behavior.journalist import MessageFactory as _
+from zope import schema
+from zope.annotation.interfaces import IAnnotations
+from zope.component import adapts
+from zope.interface import implements, alsoProvides
 
 
 class IJournalist(form.Schema):
     """Add fields to Person
     """
     email = schema.TextLine(
-            title=_(u"Email"),
-            description=_(u"Email address of the journalist."),
-            required=False,
-        )
+        title=_(u"Email"),
+        description=_(u"Email address of the journalist."),
+        required=False,
+    )
 
     resume = schema.Text(
-                title=_(u"Résumé"),
-                description=_(u"A short biografy of the journalist."),
-                required=False
-            )
+        title=_(u"Résumé"),
+        description=_(u"A short biografy of the journalist."),
+        required=False
+    )
 
 alsoProvides(IJournalist, form.IFormFieldProvider)
 
@@ -56,7 +52,7 @@ class Journalist(object):
     def email(self):
         return self.annotation.get('s17.person.journalist_email', [])
 
-    @email.setter
+    @email.setter  # NOQA
     def email(self, value):
         self.annotation['s17.person.journalist_email'] = value
 
@@ -64,6 +60,6 @@ class Journalist(object):
     def resume(self):
         return self.annotation.get('s17.person.resume', [])
 
-    @resume.setter
+    @resume.setter  # NOQA
     def resume(self, value):
         self.annotation['s17.person.resume'] = value
