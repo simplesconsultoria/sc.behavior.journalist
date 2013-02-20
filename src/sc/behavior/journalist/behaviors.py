@@ -1,42 +1,46 @@
 # coding: utf-8
 
-"""Behavior to allow one single e-mail address.
-The e-mail addrss is for purposesof internal identification
-and should not be exposed to anonymous users.
-and a short biography to sc.person.Person
-"""
-
+from Products.CMFDefault.utils import checkEmailAddress
 from zope.annotation.interfaces import IAnnotations
 
 from zope.interface import implements, alsoProvides
 from zope.component import adapts
 
 from plone.directives import form
-from plone.directives import dexterity
 from zope import schema
 
 from s17.person.content.person import IPerson
 
 from sc.behavior.journalist import MessageFactory as _
 
+
 class IJournalist(form.Schema):
     """Add fields to Person
     """
-    dexterity.read_permission(email="cmf.ModifyPortalContent")
     email = schema.TextLine(
-            title=_(u"e-mail"),
-            description=_(u"Single e-mail"),
+            title=_(u"Email"),
+            description=_(u"Email address of the journalist."),
             required=False,
         )
 
     resume = schema.Text(
                 title=_(u"Résumé"),
-                description=_(u"Short biography describing the person -"
-                u" suitable to be displayed in a portlet along posts"),
+                description=_(u"A short biografy of the journalist."),
                 required=False
             )
 
 alsoProvides(IJournalist, form.IFormFieldProvider)
+
+
+@form.validator(field=IJournalist['email'])
+def validateEmailAddress(value):
+    """Validate an email, if provided.
+    """
+    if not value:
+        return True
+
+    checkEmailAddress(value)
+
 
 class Journalist(object):
     """Stores the extra fields in the anotation
