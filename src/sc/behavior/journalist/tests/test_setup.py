@@ -45,15 +45,6 @@ class TestInstall(BaseTestCase):
         self.assertTrue(self.qi.isProductInstalled(dependency),
                         '%s not installed' % dependency)
 
-    def test_catalog_installed(self):
-        self.assertTrue('portal_personcatalog' in self.portal.objectIds(),
-                        'Catalog not installed')
-
-    def test_css_registry(self):
-        portal_css = self.portal.portal_css
-        resources = portal_css.getResourceIds()
-        self.assertTrue('++resource++s17.person.stylesheets/s17.person.css' in resources)
-
 
 class TestUninstall(BaseTestCase):
     """ensure product is properly uninstalled"""
@@ -64,8 +55,3 @@ class TestUninstall(BaseTestCase):
 
     def test_uninstalled(self):
         self.assertFalse(self.qi.isProductInstalled(PROJECTNAME))
-
-    def test_css_registry(self):
-        portal_css = self.portal.portal_css
-        resources = portal_css.getResourceIds()
-        self.assertFalse('++resource++s17.person.stylesheets/s17.person.css' in resources)

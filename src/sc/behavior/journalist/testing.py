@@ -21,25 +21,12 @@ class Fixture(PloneSandboxLayer):
         self.applyProfile(portal, 'sc.behavior.journalist:default')
 
 
-class FixtureDemo(PloneSandboxLayer):
-
-    defaultBases = (PLONE_FIXTURE,)
-
-    def setUpPloneSite(self, portal):
-        # Install into Plone site using portal_setup
-        portal.portal_workflow.setChainForPortalTypes(
-            ['Folder', 'Person'],
-            ['simple_publication_workflow'])
-        self.applyProfile(portal, 'sc.behavior.journalist:demo')
-
-
 FIXTURE = Fixture()
-DEMO_FIXTURE = FixtureDemo()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
     name='sc.behavior.journalist:Integration',
 )
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE, DEMO_FIXTURE, ZSERVER_FIXTURE,),
+    bases=(FIXTURE, ZSERVER_FIXTURE,),
     name='sc.behavior.journalist:Functional',
 )

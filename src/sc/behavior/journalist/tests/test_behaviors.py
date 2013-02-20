@@ -3,28 +3,14 @@
 
 import unittest2 as unittest
 
-#from five import grok
-
 from zope.component import queryUtility
-from zope.interface import Invalid
 
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
 from plone.behavior.interfaces import IBehavior
 
-#from plone.dexterity.fti import DexterityFTI
 from plone.dexterity.interfaces import IDexterityFTI
-
-#from s17.person.content.person import Person
-#from s17.person.content.person import IPerson
-
-#from s17.person.behaviors.contact import IContactInfo
-
-#from s17.person.behaviors.user import INameFromUserName
-#from s17.person.behaviors.user import IPloneUser
-
-from sc.behavior.journalist import IJournalist
 
 from  sc.behavior.journalist import INTEGRATION_TESTING
 
@@ -73,21 +59,7 @@ class IContactInfoTest(unittest.TestCase):
         user1 = self.folder['user1']
         adapter = IJournalist(user1)
         adapter.email = "email@example.com"
-        self.assertEquals(adapter.email,"email@example.com" )
-
-    def test_valid_emails(self):
-        data = MockJournalist()
-        data.email = "email@example.com"
-        try:
-            IJournalist.validateInvariants(data)
-        except Invalid:
-            self.fail()
-
-    def test_invalid_emails(self):
-        data = MockJournalist()
-        # Wrong format
-        data.email = "hahahaha.not-valid"
-        self.assertRaises(Invalid, IJournalist.validateInvariants, data)
+        self.assertEquals(adapter.email, "email@example.com")
 
     def test_resume(self):
         self.folder.invokeFactory('Person', 'user1')
