@@ -45,6 +45,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Pillow',
         'plone.behavior',
         'plone.directives.form',
         's17.person',
