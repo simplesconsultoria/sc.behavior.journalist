@@ -10,7 +10,6 @@ from zope.component import adapts
 from zope.interface import implements, alsoProvides
 
 
-
 class IJournalist(form.Schema):
     """Add fields to Person
     """
