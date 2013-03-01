@@ -1,7 +1,6 @@
 # coding: utf-8
 
 from plone.directives import form
-from plone.directives import dexterity
 from Products.CMFDefault.utils import checkEmailAddress
 from s17.person.content.person import IPerson
 from sc.behavior.journalist import MessageFactory as _
@@ -15,7 +14,6 @@ from zope.interface import implements, alsoProvides
 class IJournalist(form.Schema):
     """Add fields to Person
     """
-    dexterity.read_permission(email="cmf.ModifyPortalContent")
     email = schema.TextLine(
         title=_(u"Email"),
         description=_(u"Email address of the journalist."),
