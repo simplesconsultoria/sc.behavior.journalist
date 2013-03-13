@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 import os
 
-version = '1.0'
+version = '1.0a1'
 description = "Adds Journalist especific information to the Person content \
 type defined in s17.person.",
 long_description = open("README.txt").read() + "\n" + \
