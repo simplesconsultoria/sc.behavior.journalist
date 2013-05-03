@@ -20,7 +20,7 @@ class IJournalist(form.Schema):
     )
 
     resume = schema.Text(
-        title=_(u"Résumé"),
+        title=_(u"Resume"),
         description=_(u"A short biografy of the journalist."),
         required=False
     )

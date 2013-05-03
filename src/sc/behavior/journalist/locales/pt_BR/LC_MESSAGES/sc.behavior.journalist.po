@@ -16,7 +16,7 @@ msgstr ""
 
 #: sc/behavior/journalist/behaviors.py:28
 msgid "A short biografy of the journalist."
-msgstr ""
+msgstr "Um resumo da biografia do jornalista"
 
 #: sc/behavior/journalist/behaviors.py:21
 msgid "Email"
@@ -24,9 +24,9 @@ msgstr ""
 
 #: sc/behavior/journalist/behaviors.py:22
 msgid "Email address of the journalist."
-msgstr ""
+msgstr "Email do jornalista"
 
 #: sc/behavior/journalist/behaviors.py:27
-msgid "Résumé"
-msgstr ""
+msgid "Resume"
+msgstr "Resumo"
 
