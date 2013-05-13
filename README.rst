@@ -13,14 +13,16 @@ defined in s17.person.
 Don't Panic
 -----------
 
-- On Plone's Control Panel, install the package and go to Dexterity Content
-  Types.
+- On Plone's Control Panel, install the package and go to 'Dexterity Content
+  Types'.
+- Select the 'Person' content type and then the 'Behaviors' tab.
+- Select the 'Journalist' behavior and press the Save button.
 
-- Select the Person content type and then the Behaviors tab.
+Now you'll see the following new fields on Person objects:
 
--Select the Journalist behavior and press the Save button.
-
-Now you'll see a couple of new fields on the Person objects.
+- Email: Email address of the journalist.
+- Résumé: A short biografy of the journalist.
+- Signature: Stylized version of journalist's name to be used in bylines.
 
 Mostly Harmless
 ---------------
