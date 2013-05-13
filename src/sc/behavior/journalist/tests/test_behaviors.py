@@ -58,3 +58,12 @@ class IContactInfoTest(unittest.TestCase):
         self.assertEqual(journalist.resume, u"")
         journalist.resume = u"somebody, somewhere"
         self.assertEqual(journalist.resume, u"somebody, somewhere")
+
+    def test_signature(self):
+        self.folder.invokeFactory('Person', 'user1')
+        user1 = self.folder['user1']
+        journalist = IJournalist(user1)
+        self.assertEqual(journalist.signature, u"")
+        journalist.signature = u"John Doe, of the Plone Foundation"
+        self.assertEqual(
+            journalist.signature, u"John Doe, of the Plone Foundation")

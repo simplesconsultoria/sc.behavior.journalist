@@ -25,6 +25,14 @@ class IJournalist(form.Schema):
         required=False
     )
 
+    signature = schema.TextLine(
+        title=_(u"Signature"),
+        description=_(
+            u"Stylized version of journalist's name to be used in bylines."
+        ),
+        required=False,
+    )
+
 alsoProvides(IJournalist, form.IFormFieldProvider)
 
 
@@ -63,3 +71,11 @@ class Journalist(object):
     @resume.setter
     def resume(self, value):
         self.annotation['s17.person.resume'] = value
+
+    @property
+    def signature(self):
+        return self.annotation.get('s17.person.signature', u"")
+
+    @signature.setter
+    def signature(self, value):
+        self.annotation['s17.person.signature'] = value
