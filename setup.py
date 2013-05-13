@@ -48,13 +48,22 @@ setup(
         'Pillow',
         'plone.behavior',
         'plone.directives.form',
+        'Products.CMFDefault',
+        'Products.GenericSetup',
         's17.person',
         'setuptools',
         'zope.component',
+        'zope.i18nmessageid',
         'zope.interface',
         'zope.schema',
     ],
-    extras_require={'test': ['plone.app.testing']},
+    extras_require={
+        'test': [
+            'plone.app.testing',
+            'plone.dexterity',
+            'plone.testing',
+        ],
+    },
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone
