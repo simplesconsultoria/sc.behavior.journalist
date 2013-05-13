@@ -28,13 +28,13 @@ msgstr "Endereço de e-mail do jornalista"
 
 #: sc/behavior/journalist/behaviors.py:23
 msgid "Résumé"
-msgstr "Curriculo"
+msgstr "Currículo"
 
 #: sc/behavior/journalist/behaviors.py:29
 msgid "Signature"
-msgstr ""
+msgstr "Assinatura"
 
 #: sc/behavior/journalist/behaviors.py:30
 msgid "Stylized version of journalist's name to be used in bylines."
-msgstr ""
+msgstr "Versão do nome do jornalista que será exibida junto ao conteúdo"
 
