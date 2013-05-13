@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.behavior.journalist 1.0\n"
-"POT-Creation-Date: 2013-02-20 20:29+0000\n"
+"POT-Creation-Date: 2013-05-13 15:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Andre Nogueira<agnogueira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,19 +14,27 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.behavior.journalist\n"
 
-#: sc/behavior/journalist/behaviors.py:28
+#: sc/behavior/journalist/behaviors.py:24
 msgid "A short biografy of the journalist."
 msgstr "Pequena biografia do jornalista"
 
-#: sc/behavior/journalist/behaviors.py:21
+#: sc/behavior/journalist/behaviors.py:17
 msgid "Email"
 msgstr "E-mail"
 
-#: sc/behavior/journalist/behaviors.py:22
+#: sc/behavior/journalist/behaviors.py:18
 msgid "Email address of the journalist."
 msgstr "Endereço de e-mail do jornalista"
 
-#: sc/behavior/journalist/behaviors.py:27
+#: sc/behavior/journalist/behaviors.py:23
 msgid "Résumé"
 msgstr "Curriculo"
+
+#: sc/behavior/journalist/behaviors.py:29
+msgid "Signature"
+msgstr ""
+
+#: sc/behavior/journalist/behaviors.py:30
+msgid "Stylized version of journalist's name to be used in bylines."
+msgstr ""
 
