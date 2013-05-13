@@ -1,7 +1,7 @@
 There's a frood who really knows where his towel is
 ---------------------------------------------------
 
-1.0a2 (unreleased)
+1.0b1 (2013-05-13)
 ------------------
 
 - Tested compatibility with Plone 4.3. [hvelarde]
