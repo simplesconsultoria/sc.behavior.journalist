@@ -8,19 +8,13 @@ from sc.behavior.journalist.behaviors import IJournalist
 from sc.behavior.journalist.testing import INTEGRATION_TESTING
 from zope.component import queryUtility
 
-import unittest2 as unittest
-
-
-class MockJournalist(object):
-    email = ""
-    resume = ""
+import unittest
 
 
 class IContactInfoTest(unittest.TestCase):
 
-    name = 'sc.behavior.journalist.behaviors.IJournalist'
-
     layer = INTEGRATION_TESTING
+    behavior_name = 'sc.behavior.journalist.behaviors.IJournalist'
 
     def setUp(self):
         self.portal = self.layer['portal']
@@ -30,19 +24,18 @@ class IContactInfoTest(unittest.TestCase):
         self.portal.invokeFactory('Folder', 'test-folder')
         self.folder = self.portal['test-folder']
         behaviors = []
-        behaviors.append(self.name)
+        behaviors.append(self.behavior_name)
         fti = queryUtility(IDexterityFTI, name='Person')
         fti.behaviors = tuple(behaviors)
 
     def test_registration(self):
-        registration = queryUtility(IBehavior, name=self.name)
+        registration = queryUtility(IBehavior, name=self.behavior_name)
         self.assertIsNotNone(registration)
 
     def test_behavior_in_person(self):
-        # XXX: I don't think this is useful
         fti = queryUtility(IDexterityFTI, name='Person')
         behaviors = fti.behaviors
-        self.assertIn(self.name, behaviors)
+        self.assertIn(self.behavior_name, behaviors)
 
     def test_adapt_content(self):
         self.folder.invokeFactory('Person', 'p1')

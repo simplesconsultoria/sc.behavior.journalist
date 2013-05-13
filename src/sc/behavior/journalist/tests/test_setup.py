@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from plone.app.testing import login
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from sc.behavior.journalist.testing import INTEGRATION_TESTING
-from zope.site.hooks import setSite
 
-import unittest2 as unittest
+import unittest
 
 PROJECTNAME = 'sc.behavior.journalist'
 
@@ -17,32 +12,16 @@ class BaseTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
-    def setUpUser(self):
-        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
-        login(self.portal, TEST_USER_NAME)
-
     def setUp(self):
-        portal = self.layer['portal']
-        setSite(portal)
-        self.portal = portal
-        self.qi = getattr(self.portal, 'portal_quickinstaller')
-        self.pp = getattr(self.portal, 'portal_properties')
-        self.wt = getattr(self.portal, 'portal_workflow')
-        self.st = getattr(self.portal, 'portal_setup')
-        self.setUpUser()
+        self.portal = self.layer['portal']
+        self.qi = self.portal['portal_quickinstaller']
 
 
 class TestInstall(BaseTestCase):
     """ensure product is properly installed"""
 
     def test_installed(self):
-        self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
-                        '%s not installed' % PROJECTNAME)
-
-    def test_dependencies_installed(self):
-        dependency = 's17.person'
-        self.assertTrue(self.qi.isProductInstalled(dependency),
-                        '%s not installed' % dependency)
+        self.assertTrue(self.qi.isProductInstalled(PROJECTNAME))
 
 
 class TestUninstall(BaseTestCase):
