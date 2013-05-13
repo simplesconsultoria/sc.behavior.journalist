@@ -1,8 +1,10 @@
-Know where your towel is
-------------------------
+There's a frood who really knows where his towel is
+---------------------------------------------------
 
 1.0a2 (unreleased)
 ------------------
+
+- Tested compatibility with Plone 4.3. [hvelarde]
 
 - Add 'signature' field to behavior. [hvelarde]
 
