@@ -4,7 +4,7 @@ Know where your towel is
 1.0a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix default value of fields to be an empty unicode string. [hvelarde]
 
 
 1.0a1 (2013-03-13)

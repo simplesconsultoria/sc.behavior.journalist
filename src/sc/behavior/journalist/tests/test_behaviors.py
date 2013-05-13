@@ -47,12 +47,14 @@ class IContactInfoTest(unittest.TestCase):
         self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         journalist = IJournalist(user1)
-        journalist.email = "email@example.com"
-        self.assertEqual(journalist.email, "email@example.com")
+        self.assertEqual(journalist.email, u"")
+        journalist.email = u"email@example.com"
+        self.assertEqual(journalist.email, u"email@example.com")
 
     def test_resume(self):
         self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         journalist = IJournalist(user1)
+        self.assertEqual(journalist.resume, u"")
         journalist.resume = u"somebody, somewhere"
         self.assertEqual(journalist.resume, u"somebody, somewhere")

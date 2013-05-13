@@ -50,16 +50,16 @@ class Journalist(object):
 
     @property
     def email(self):
-        return self.annotation.get('s17.person.journalist_email', [])
+        return self.annotation.get('s17.person.journalist_email', u"")
 
-    @email.setter  # NOQA
+    @email.setter
     def email(self, value):
         self.annotation['s17.person.journalist_email'] = value
 
     @property
     def resume(self):
-        return self.annotation.get('s17.person.resume', [])
+        return self.annotation.get('s17.person.resume', u"")
 
-    @resume.setter  # NOQA
+    @resume.setter
     def resume(self, value):
         self.annotation['s17.person.resume'] = value
